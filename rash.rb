@@ -13,7 +13,7 @@ configure do
 end
 
 get '/' do
-  header 'Content-Type' => 'text/html; charset=utf-8'
+  content_type 'text/html', :charset => 'utf-8'
   tag = params[:tag] || Hashtag
   @introduction = "Welcome! To display your tweets here, just put the <a href='http://hashtags.org/'>hashtag</a> <strong>##{tag}</strong> in your tweets. Enjoy."
   pf = FeedParser.parse(TwitterSearchUrl + tag)
@@ -22,7 +22,7 @@ get '/' do
 end
 
 get '/rash.css' do
-  header 'Content-Type' => 'text/css; charset=utf-8'
+  content_type 'text/css', :charset => 'utf-8'
   sass :stylesheet
 end
 
