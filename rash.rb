@@ -26,6 +26,10 @@ get '/rash.css' do
   sass :stylesheet
 end
 
+get '/:tag' do
+  redirect "/?tag=#{params['tag']}"
+end
+
 use_in_file_templates!
 
 __END__
