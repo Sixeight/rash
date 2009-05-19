@@ -66,6 +66,7 @@ __END__
     - url_pattern = /(http[s]?:\/\/[-\w\.]+[\d+]?[\/\w\/_\.\~]*[\?\S+]?)/
     - entry['title'].gsub!(url_pattern, '<a class="url" href="\1">\1</a>')
     - entry['title'].gsub!(/\#(\w+)/, '<a class="hashtag" href="/?tag=\1">#\1</a>')
+    %img{ :src => entry['links'][1]['href'], :width => '48', :height => '48' }
     %p= entry['title']
     %span
       ^- from
@@ -73,6 +74,7 @@ __END__
       on
       - nicetime = Time.parse(entry['published_time'].to_s).strftime('%d/%m/%Y at %H:%M:%S')
       %a{:href=>entry['link']}= nicetime
+    %span.clear
 
 
 @@ stylesheet
@@ -142,6 +144,10 @@ body
   :margin-bottom 20px
   :padding 10px
 
+  img
+    :float left
+    :margin 10px
+
   p
     :font-size 30px
     :color white
@@ -165,3 +171,7 @@ body
   :border-bottom 1px dashed #fff
   :color #aaa
   :text-decoration none
+
+.clear
+  :clear both
+
